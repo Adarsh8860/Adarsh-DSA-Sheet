@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code With Adarsh — 168 DSA Master Sheet (Solve 90%+ Interview Problems)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d16;
+      --bg-secondary: #111827;
+      --bg-card: #161f33;
+      --bg-card-hover: #1e293b;
+      --bg-row-solved: rgba(16, 185, 129, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #1e293b;
+      --border-highlight: #334155;
+      --accent: #f97316;
+      --accent-hover: #ea580c;
+      --accent-soft: rgba(249, 115, 22, 0.14);
+      --brand-blue: #3b82f6;
+      --easy-text: #10b981;
+      --easy-bg: rgba(16, 185, 129, 0.14);
+      --medium-text: #f59e0b;
+      --medium-bg: rgba(245, 158, 11, 0.14);
+      --hard-text: #ef4444;
+      --hard-bg: rgba(239, 68, 68, 0.14);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    html.light {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --bg-row-solved: rgba(16, 185, 129, 0.09);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --border-highlight: #cbd5e1;
+      --accent: #ea580c;
+      --accent-hover: #c2410c;
+      --accent-soft: rgba(234, 88, 12, 0.1);
+      --brand-blue: #2563eb;
+      --easy-text: #059669;
+      --easy-bg: rgba(5, 150, 105, 0.12);
+      --medium-text: #d97706;
+      --medium-bg: rgba(217, 119, 6, 0.12);
+      --hard-text: #dc2626;
+      --hard-bg: rgba(220, 38, 38, 0.12);
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      padding-bottom: 80px;
+    }
+
+    /* Top Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 13, 22, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 24px;
+    }
+    html.light .navbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
+    .nav-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+    }
+    .brand-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .btn:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-highlight);
+    }
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 20px 0;
+    }
+
+    /* Hero Guarantee Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(59, 130, 246, 0.08) 100%);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow);
+    }
+    .hero-left {
+      max-width: 780px;
+    }
+    .guarantee-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--easy-text);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .hero-title span {
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .hero-desc strong {
+      color: var(--text-primary);
+    }
+    .hero-stats-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .mini-stat {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 6px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+    .mini-stat b {
+      color: var(--text-primary);
+    }
+
+    /* Progress Analytics Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 2fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 920px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+    }
+    .overall-progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .ring-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      flex-shrink: 0;
+    }
+    .ring-svg {
+      transform: rotate(-90deg);
+      width: 110px;
+      height: 110px;
+    }
+    .ring-bg {
+      fill: none;
+      stroke: var(--border-color);
+      stroke-width: 10;
+    }
+    .ring-fill {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 276.46;
+      stroke-dashoffset: 276.46;
+      transition: stroke-dashoffset 0.5s ease;
+    }
+    .ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .ring-pct {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .ring-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .overall-details h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .overall-count {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .readiness-tag {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Difficulty Breakdown Bars */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      height: 100%;
+      align-items: center;
+    }
+    @media (max-width: 640px) {
+      .diff-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .diff-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .diff-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .diff-easy { color: var(--easy-text); }
+    .diff-medium { color: var(--medium-text); }
+    .diff-hard { color: var(--hard-text); }
+    .diff-numbers {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+    .bar-easy { background: var(--easy-text); }
+    .bar-medium { background: var(--medium-text); }
+    .bar-hard { background: var(--hard-text); }
+
+    /* Filter & Controls Bar */
+    .controls-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .controls-top {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 250px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .filter-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .select-input {
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+    .topic-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+    .topic-pill {
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .topic-pill:hover, .topic-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Topic Accordion Sections */
+    .topic-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .topic-header {
+      padding: 16px 22px;
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+    .topic-header:hover {
+      background: var(--bg-card-hover);
+    }
+    .topic-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topic-step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .topic-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .topic-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .topic-prog-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 170px;
+    }
+    @media (max-width: 600px) {
+      .topic-prog-wrap {
+        min-width: auto;
+      }
+      .topic-prog-bar {
+        display: none;
+      }
+    }
+    .topic-prog-bar {
+      flex: 1;
+      height: 7px;
+      background: var(--border-color);
+      border-radius: 999px;
+      overflow: hidden;
+      width: 90px;
+    }
+    .topic-prog-fill {
+      height: 100%;
+      background: var(--easy-text);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+    .topic-count-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .chevron {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: transform 0.25s ease;
+    }
+    .topic-section.collapsed .chevron {
+      transform: rotate(-90deg);
+    }
+    .topic-section.collapsed .topic-body {
+      display: none;
+    }
+
+    /* Problem Table */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .problem-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .problem-table th {
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+    .problem-table td {
+      padding: 13px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    .problem-row {
+      transition: background 0.15s ease;
+    }
+    .problem-row:hover {
+      background: rgba(148, 163, 184, 0.05);
+    }
+    .problem-row.solved {
+      background: var(--bg-row-solved);
+    }
+    .problem-row.solved .prob-title-link {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    /* Custom Checkbox */
+    .status-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 2px solid var(--border-highlight);
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      color: transparent;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .status-check:hover {
+      border-color: var(--easy-text);
+    }
+    .status-check.checked {
+      background: var(--easy-text);
+      border-color: var(--easy-text);
+      color: #fff;
+    }
+
+    .prob-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .prob-title-link {
+      color: var(--text-primary);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s ease;
+    }
+    .prob-title-link:hover {
+      color: var(--accent);
+    }
+    .lc-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      background: rgba(249, 115, 22, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(249, 115, 22, 0.28);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .lc-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .pattern-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .diff-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      min-width: 68px;
+    }
+    .diff-badge.Easy {
+      background: var(--easy-bg);
+      color: var(--easy-text);
+    }
+    .diff-badge.Medium {
+      background: var(--medium-bg);
+      color: var(--medium-text);
+    }
+    .diff-badge.Hard {
+      background: var(--hard-bg);
+      color: var(--hard-text);
+    }
+
+    .icon-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.15s ease;
+    }
+    .icon-btn:hover {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border-color: var(--border-highlight);
+    }
+    .icon-btn.starred {
+      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.1);
+    }
+    .icon-btn.has-note {
+      color: var(--brand-blue);
+      border-color: rgba(59, 130, 246, 0.4);
+      background: rgba(59, 130, 246, 0.1);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-highlight);
+      border-radius: 14px;
+      max-width: 560px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .note-textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      resize: vertical;
+      margin-bottom: 14px;
+      outline: none;
+    }
+    .note-textarea:focus {
+      border-color: var(--accent);
+    }
+    .hint-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 14px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .hint-box strong {
+      color: var(--text-primary);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">CA</div>
+        <div>
+          <div class="brand-title">
+            Code With Adarsh
+            <span class="brand-badge">A2Z 168 SHEET</span>
+          </div>
+          <div class="brand-sub">Complete Placement &amp; FAANG DSA Tracker</div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary" id="randomBtn" title="Pick a random unsolved question">
+          🎲 Pick Random Question
+        </button>
+        <button class="btn" id="expandAllBtn">Expand All</button>
+        <button class="btn" id="exportBtn" title="Download progress backup">⬇ Backup</button>
+        <button class="btn" id="resetBtn" title="Reset progress">↺ Reset</button>
+        <button class="btn" id="themeBtn" title="Toggle Dark/Light Mode">☀️ Light</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Guarantee Banner -->
+    <section class="hero-banner">
+      <div class="hero-left">
+        <div class="guarantee-pill">✓ Verified 90%+ Interview Pattern Coverage</div>
+        <h1 class="hero-title">Code With Adarsh — <span>168 Must-Do DSA Sheet</span></h1>
+        <p class="hero-desc">
+          <strong>Dawa Hai:</strong> Agar aapne is sheet ke <strong>168 handpicked LeetCode questions</strong> (Easy, Medium &amp; Hard) imandari se solve kar liye, toh aap <strong>90% se zyada Coding Interviews aur Online Assessments (OA)</strong> ke problems aasaani se crack kar loge. Har question ke aage tick lagao aur seedha LeetCode par solve karo!
+        </p>
+        <div class="hero-stats-pills">
+          <span class="mini-stat">📚 <b>15</b> Core DSA Topics</span>
+          <span class="mini-stat">🔥 <b>168</b> Direct LeetCode Problems</span>
+          <span class="mini-stat">⚡ <b>Auto-Saved</b> in Browser</span>
+          <span class="mini-stat">🎯 <b>Easy + Medium + Hard</b> Covered</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Dashboard -->
+    <section class="dashboard-grid">
+      <div class="card overall-progress-wrap">
+        <div class="ring-container">
+          <svg class="ring-svg" viewBox="0 0 100 100">
+            <circle class="ring-bg" cx="50" cy="50" r="44"></circle>
+            <circle class="ring-fill" id="overallRing" cx="50" cy="50" r="44"></circle>
+          </svg>
+          <div class="ring-center">
+            <span class="ring-pct" id="overallPct">0%</span>
+            <span class="ring-sub">SOLVED</span>
+          </div>
+        </div>
+        <div class="overall-details">
+          <h3>Total Sheet Progress</h3>
+          <div class="overall-count" id="overallCountText">0 / 168</div>
+          <div class="readiness-tag" id="readinessText">
+            Solve 150+ questions to unlock 90% Interview Readiness!
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="diff-grid">
+          <div class="diff-box">
+            <div class="diff-header">
+              <span class="diff-easy">● Easy</span>
+              <span class="diff-numbers" id="easyCountText">0 / 0</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bar-easy" id="easyBar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="diff-box">
+            <div class="diff-header">
+              <span class="diff-medium">● Medium</span>
+              <span class="diff-numbers" id="mediumCountText">0 / 0</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bar-medium" id="mediumBar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="diff-box">
+            <div class="diff-header">
+              <span class="diff-hard">● Hard</span>
+              <span class="diff-numbers" id="hardCountText">0 / 0</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill bar-hard" id="hardBar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Filter Controls -->
+    <section class="controls-card">
+      <div class="controls-top">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search among 168 questions by title, pattern (e.g. Kadane, Sliding Window, DP)..."
+          />
+        </div>
+
+        <div class="filter-group">
+          <select id="diffFilter" class="select-input">
+            <option value="ALL">All Difficulties</option>
+            <option value="Easy">Easy Only</option>
+            <option value="Medium">Medium Only</option>
+            <option value="Hard">Hard Only</option>
+          </select>
+
+          <select id="statusFilter" class="select-input">
+            <option value="ALL">All Status</option>
+            <option value="UNSOLVED">Unsolved Only</option>
+            <option value="SOLVED">Solved (Ticked)</option>
+            <option value="STARRED">★ Starred for Revision</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="topic-pills" id="topicPillsContainer"></div>
+    </section>
+
+    <!-- Dynamic DSA Sheet Container -->
+    <section id="sheetContainer"></section>
+
+    <footer class="footer">
+      Built for <strong>Code With Adarsh</strong> • 168 Curated LeetCode Problems • Master Patterns &amp; Crack 90%+ Coding Interviews
+    </footer>
+  </main>
+
+  <!-- Approach & Notes Modal -->
+  <div class="modal-backdrop" id="infoModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modalProblemTitle">Problem Name</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;" id="modalProblemSub">Pattern</div>
+        </div>
+        <button class="modal-close" id="closeModalBtn">✕</button>
+      </div>
+
+      <div class="hint-box">
+        <div style="margin-bottom: 6px;"><strong>💡 Core Pattern / Optimal Approach:</strong></div>
+        <div id="modalApproachText"></div>
+      </div>
+
+      <label style="display:block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">
+        📝 Your Personal Revision Notes / Code Snippet:
+      </label>
+      <textarea
+        id="modalNoteInput"
+        class="note-textarea"
+        placeholder="Write your intuition, edge cases, or dry-run notes here..."
+      ></textarea>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <a href="#" target="_blank" rel="noopener" class="btn" id="modalLcLink">Solve on LeetCode ↗</a>
+        <button class="btn btn-primary" id="saveNoteBtn">Save Note</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Complete 168 Curated DSA Questions across 15 Topics
+    const DSA_TOPICS = [
+      {
+        id: "arrays",
+        title: "Arrays & Matrix",
+        questions: [
+          { id: 1, title: "Two Sum", slug: "two-sum", diff: "Easy", pattern: "HashMap Lookup", hint: "Store complement (target - nums[i]) in a HashMap for O(N) time and O(N) space." },
+          { id: 2, title: "Best Time to Buy and Sell Stock", slug: "best-time-to-buy-and-sell-stock", diff: "Easy", pattern: "Running Minimum", hint: "Track minimum price seen so far and maximize (price - minPrice) in O(N) time." },
+          { id: 3, title: "Contains Duplicate", slug: "contains-duplicate", diff: "Easy", pattern: "HashSet", hint: "Insert elements into a HashSet; if an element already exists, return true." },
+          { id: 4, title: "Move Zeroes", slug: "move-zeroes", diff: "Easy", pattern: "Two PointersSwap", hint: "Maintain a slow pointer for the next non-zero position and swap as you iterate." },
+          { id: 5, title: "Majority Element", slug: "majority-element", diff: "Easy", pattern: "Boyer-Moore Voting", hint: "Cancel out different elements using a candidate and count variable in O(N) time and O(1) space." },
+          { id: 6, title: "Missing Number", slug: "missing-number", diff: "Easy", pattern: "XOR / Gauss Sum", hint: "XOR all indices [0..n] with all array elements, or subtract array sum from n*(n+1)/2." },
+          { id: 7, title: "Maximum Subarray (Kadane's Algorithm)", slug: "maximum-subarray", diff: "Medium", pattern: "Kadane's Algorithm", hint: "Maintain currentSum = max(nums[i], currentSum + nums[i]) and update maxSum." },
+          { id: 8, title: "Sort Colors (Dutch National Flag)", slug: "sort-colors", diff: "Medium", pattern: "3-Way Partitioning", hint: "Use three pointers (low, mid, high) to partition 0s, 1s, and 2s in a single pass." },
+          { id: 9, title: "Next Permutation", slug: "next-permutation", diff: "Medium", pattern: "Array Breakpoint", hint: "Find first decreasing element from right, swap with next larger on right, and reverse suffix." },
+          { id: 10, title: "Rotate Array", slug: "rotate-array", diff: "Medium", pattern: "3-Step Reversal", hint: "Reverse whole array, reverse first k elements, then reverse remaining n-k elements." },
+          { id: 11, title: "Product of Array Except Self", slug: "product-of-array-except-self", diff: "Medium", pattern: "Prefix & Suffix Product", hint: "Compute prefix products in output array, then multiply by running suffix product from right." },
+          { id: 12, title: "Subarray Sum Equals K", slug: "subarray-sum-equals-k", diff: "Medium", pattern: "Prefix Sum + HashMap", hint: "Store frequency of prefix sums in a map; check how many times (currSum - k) has appeared." },
+          { id: 13, title: "Longest Consecutive Sequence", slug: "longest-consecutive-sequence", diff: "Medium", pattern: "HashSet Sequence Start", hint: "Put all numbers in a Set; only start counting a sequence from x if (x - 1) is not in the Set." },
+          { id: 14, title: "Merge Intervals", slug: "merge-intervals", diff: "Medium", pattern: "Sorting + Interval Merge", hint: "Sort intervals by start time and merge overlapping intervals greedily." },
+          { id: 15, title: "Set Matrix Zeroes", slug: "set-matrix-zeroes", diff: "Medium", pattern: "In-Place Matrix Markers", hint: "Use first row and first column as markers to achieve O(1) extra space." },
+          { id: 16, title: "Spiral Matrix", slug: "spiral-matrix", diff: "Medium", pattern: "4-Boundary Simulation", hint: "Maintain top, bottom, left, right boundaries and shrink them after each directional sweep." },
+          { id: 17, title: "Rotate Image (90 Degrees)", slug: "rotate-image", diff: "Medium", pattern: "Transpose + Reverse", hint: "Transpose the matrix across the main diagonal, then reverse each row." },
+          { id: 18, title: "First Missing Positive", slug: "first-missing-positive", diff: "Hard", pattern: "Cyclic Index Placement", hint: "Place each number x in [1..n] at index x - 1, then scan for the first index mismatch." }
+        ]
+      },
+      {
+        id: "two-pointers-sliding-window",
+        title: "Two Pointers & Sliding Window",
+        questions: [
+          { id: 19, title: "Valid Palindrome", slug: "valid-palindrome", diff: "Easy", pattern: "Two Pointers Inward", hint: "Use left and right pointers, skipping non-alphanumeric characters and comparing lowercase chars." },
+          { id: 20, title: "Two Sum II - Input Array Is Sorted", slug: "two-sum-ii-input-array-is-sorted", diff: "Medium", pattern: "Converging Two Pointers", hint: "If sum < target increment left; if sum > target decrement right." },
+          { id: 21, title: "3Sum", slug: "3sum", diff: "Medium", pattern: "Sort + Two Pointers", hint: "Sort array, fix i, and use two pointers for remaining pair while skipping duplicates." },
+          { id: 22, title: "4Sum", slug: "4sum", diff: "Medium", pattern: "Sort + Nested Two Pointers", hint: "Sort array, fix two indices i and j, and run two-pointer search on the remaining subarray." },
+          { id: 23, title: "Container With Most Water", slug: "container-with-most-water", diff: "Medium", pattern: "Greedy Two Pointers", hint: "Compute area between left and right, then always move the pointer with the smaller height." },
+          { id: 24, title: "Longest Substring Without Repeating Characters", slug: "longest-substring-without-repeating-characters", diff: "Medium", pattern: "Variable Sliding Window", hint: "Store last seen index of each char; jump left pointer to max(left, lastSeen[c] + 1)." },
+          { id: 25, title: "Longest Repeating Character Replacement", slug: "longest-repeating-character-replacement", diff: "Medium", pattern: "Sliding Window + MaxFreq", hint: "Window is valid while (windowLen - maxCharFreq <= k). Shrink left when invalid." },
+          { id: 26, title: "Max Consecutive Ones III", slug: "max-consecutive-ones-iii", diff: "Medium", pattern: "Sliding Window Zero Count", hint: "Expand window and count zeros; when zeros > k, increment left pointer." },
+          { id: 27, title: "Permutation in String", slug: "permutation-in-string", diff: "Medium", pattern: "Fixed Window Frequency", hint: "Slide a window of length s1.length() over s2 and compare 26-char frequency arrays." },
+          { id: 28, title: "Minimum Size Subarray Sum", slug: "minimum-size-subarray-sum", diff: "Medium", pattern: "Shrinkable Sliding Window", hint: "Add to window sum; while sum >= target, record min length and shrink from left." },
+          { id: 29, title: "Trapping Rain Water", slug: "trapping-rain-water", diff: "Hard", pattern: "Two Pointers leftMax/rightMax", hint: "Move the smaller boundary inward and accumulate (leftMax - height[left]) or (rightMax - height[right])." },
+          { id: 30, title: "Minimum Window Substring", slug: "minimum-window-substring", diff: "Hard", pattern: "Sliding Window + Have/Need Map", hint: "Expand right until all required counts are met, then shrink left greedily to minimize length." }
+        ]
+      },
+      {
+        id: "strings",
+        title: "Strings & Pattern Matching",
+        questions: [
+          { id: 31, title: "Valid Anagram", slug: "valid-anagram", diff: "Easy", pattern: "26-Char Frequency Array", hint: "Count character frequencies of s and subtract frequencies of t." },
+          { id: 32, title: "Longest Common Prefix", slug: "longest-common-prefix", diff: "Easy", pattern: "Sorting / Vertical Scan", hint: "Sort the array of strings and compare only the first and last strings character by character." },
+          { id: 33, title: "Isomorphic Strings", slug: "isomorphic-strings", diff: "Easy", pattern: "Bi-directional Mapping", hint: "Maintain two maps s->t and t->s to ensure a one-to-one character bijection." },
+          { id: 34, title: "Rotate String", slug: "rotate-string", diff: "Easy", pattern: "String Concatenation Trick", hint: "Check if lengths match and goal is a substring of (s + s)." },
+          { id: 35, title: "Group Anagrams", slug: "group-anagrams", diff: "Medium", pattern: "Sorted Key / Count Signature", hint: "Group strings in a HashMap using their sorted string or 26-char count signature as the key." },
+          { id: 36, title: "Reverse Words in a String", slug: "reverse-words-in-a-string", diff: "Medium", pattern: "Two-Pointer Tokenization", hint: "Trim extra spaces and reverse word order." },
+          { id: 37, title: "Longest Palindromic Substring", slug: "longest-palindromic-substring", diff: "Medium", pattern: "Expand Around Center", hint: "Expand outward from every index i (odd length) and between i, i+1 (even length)." },
+          { id: 38, title: "Palindromic Substrings", slug: "palindromic-substrings", diff: "Medium", pattern: "Center Expansion Count", hint: "Count palindromes expanding around all 2n - 1 possible centers." },
+          { id: 39, title: "String to Integer (atoi)", slug: "string-to-integer-atoi", diff: "Medium", pattern: "Finite State Parsing", hint: "Skip leading whitespace, handle +/- sign, and clamp on 32-bit integer overflow." },
+          { id: 40, title: "Sort Characters By Frequency", slug: "sort-characters-by-frequency", diff: "Medium", pattern: "Bucket Sort / Max Heap", hint: "Count frequencies and bucket characters by frequency to build result in O(N)." },
+          { id: 41, title: "Find the Index of the First Occurrence in a String", slug: "find-the-index-of-the-first-occurrence-in-a-string", diff: "Easy", pattern: "KMP / Sliding Window", hint: "Use KMP LPS table for O(N + M) string matching." },
+          { id: 42, title: "Shortest Palindrome", slug: "shortest-palindrome", diff: "Hard", pattern: "KMP LPS on s + '#' + rev(s)", hint: "Find longest palindromic prefix using KMP prefix function on s + '#' + reverse(s)." }
+        ]
+      },
+      {
+        id: "binary-search",
+        title: "Binary Search (1D, 2D & Search Space)",
+        questions: [
+          { id: 43, title: "Binary Search", slug: "binary-search", diff: "Easy", pattern: "Standard Binary Search", hint: "Compare target with nums[mid] and halve search range [low, high] each step." },
+          { id: 44, title: "Search Insert Position", slug: "search-insert-position", diff: "Easy", pattern: "Lower Bound", hint: "Find the first index i where nums[i] >= target." },
+          { id: 45, title: "Find First and Last Position of Element in Sorted Array", slug: "find-first-and-last-position-of-element-in-sorted-array", diff: "Medium", pattern: "First & Last Occurrence BS", hint: "Run binary search twice: once biasing left on match, once biasing right." },
+          { id: 46, title: "Search in Rotated Sorted Array", slug: "search-in-rotated-sorted-array", diff: "Medium", pattern: "Rotated Halves Check", hint: "One half [low..mid] or [mid..high] is guaranteed sorted; check if target lies in the sorted half." },
+          { id: 47, title: "Find Minimum in Rotated Sorted Array", slug: "find-minimum-in-rotated-sorted-array", diff: "Medium", pattern: "Pivot Minimum BS", hint: "Compare nums[mid] with nums[high]; if nums[mid] > nums[high], minimum is in right half." },
+          { id: 48, title: "Find Peak Element", slug: "find-peak-element", diff: "Medium", pattern: "Slope Binary Search", hint: "If nums[mid] < nums[mid + 1], a peak must exist on the right side." },
+          { id: 49, title: "Single Element in a Sorted Array", slug: "single-element-in-a-sorted-array", diff: "Medium", pattern: "Even-Odd Pair Index Parity", hint: "Before the single element, pairs start at even indices; after it, pairs start at odd indices." },
+          { id: 50, title: "Search a 2D Matrix", slug: "search-a-2d-matrix", diff: "Medium", pattern: "Flattened 2D Binary Search", hint: "Treat m x n matrix as a 1D sorted array of size m*n with row = mid / n, col = mid % n." },
+          { id: 51, title: "Koko Eating Bananas", slug: "koko-eating-bananas", diff: "Medium", pattern: "Binary Search on Answer", hint: "Binary search speed k in [1, max(piles)] and check if total hours <= h." },
+          { id: 52, title: "Capacity To Ship Packages Within D Days", slug: "capacity-to-ship-packages-within-d-days", diff: "Medium", pattern: "Binary Search on Capacity", hint: "Search range [max(weights), sum(weights)] and greedily simulate day packing." },
+          { id: 53, title: "Split Array Largest Sum (Book Allocation)", slug: "split-array-largest-sum", diff: "Hard", pattern: "Min-Max Binary Search", hint: "Binary search the maximum allowed subarray sum in [max(nums), sum(nums)]." },
+          { id: 54, title: "Median of Two Sorted Arrays", slug: "median-of-two-sorted-arrays", diff: "Hard", pattern: "Partition Binary Search", hint: "Binary search partition cut on the smaller array such that maxLeft <= minRight in O(log(min(m,n)))." }
+        ]
+      },
+      {
+        id: "linked-list",
+        title: "Linked List (Singly, Doubly & Fast-Slow)",
+        questions: [
+          { id: 55, title: "Reverse Linked List", slug: "reverse-linked-list", diff: "Easy", pattern: "3-Pointer Iterative Reversal", hint: "Use prev, curr, and next pointers to reverse links in O(N) time and O(1) space." },
+          { id: 56, title: "Middle of the Linked List", slug: "middle-of-the-linked-list", diff: "Easy", pattern: "Tortoise & Hare (Fast/Slow)", hint: "Move slow by 1 step and fast by 2 steps; when fast reaches end, slow is at middle." },
+          { id: 57, title: "Merge Two Sorted Lists", slug: "merge-two-sorted-lists", diff: "Easy", pattern: "Dummy Head Merge", hint: "Use a dummy node and attach the smaller node from list1 or list2 iteratively." },
+          { id: 58, title: "Linked List Cycle", slug: "linked-list-cycle", diff: "Easy", pattern: "Floyd's Cycle Detection", hint: "If fast and slow pointers ever meet, a cycle exists." },
+          { id: 59, title: "Palindrome Linked List", slug: "palindrome-linked-list", diff: "Easy", pattern: "Find Mid + Reverse 2nd Half", hint: "Find middle using fast/slow, reverse second half in-place, and compare both halves." },
+          { id: 60, title: "Intersection of Two Linked Lists", slug: "intersection-of-two-linked-lists", diff: "Easy", pattern: "Two-Pointer Head Switch", hint: "Redirect pointer A to headB and pointer B to headA on reaching null; they meet at intersection." },
+          { id: 61, title: "Remove Nth Node From End of List", slug: "remove-nth-node-from-end-of-list", diff: "Medium", pattern: "N-Gap Two Pointers", hint: "Advance fast pointer n steps ahead of slow, then move both until fast reaches the end." },
+          { id: 62, title: "Add Two Numbers", slug: "add-two-numbers", diff: "Medium", pattern: "Elementary Math + Carry", hint: "Traverse both lists simultaneously maintaining sum and carry." },
+          { id: 63, title: "Linked List Cycle II (Find Cycle Start)", slug: "linked-list-cycle-ii", diff: "Medium", pattern: "Floyd's Entry Point", hint: "After slow and fast meet, reset one pointer to head and move both 1 step at a time." },
+          { id: 64, title: "Odd Even Linked List", slug: "odd-even-linked-list", diff: "Medium", pattern: "Pointer Relinking", hint: "Separate odd-indexed and even-indexed nodes into two chains and connect oddTail.next = evenHead." },
+          { id: 65, title: "Sort List (Merge Sort on LL)", slug: "sort-list", diff: "Medium", pattern: "Bottom-Up / Top-Down Merge Sort", hint: "Split list in half using fast/slow pointers, recursively sort both halves, and merge." },
+          { id: 66, title: "Copy List with Random Pointer", slug: "copy-list-with-random-pointer", diff: "Medium", pattern: "Interleaved Node Cloning", hint: "Insert cloned nodes right after original nodes, link random pointers, then unzip." },
+          { id: 67, title: "Reverse Nodes in k-Group", slug: "reverse-nodes-in-k-group", diff: "Hard", pattern: "Group Segment Reversal", hint: "Count k nodes, reverse that segment in-place, and connect previous group tail to new group head." }
+        ]
+      },
+      {
+        id: "stack-queue",
+        title: "Stack, Queue & Monotonic Stack",
+        questions: [
+          { id: 68, title: "Valid Parentheses", slug: "valid-parentheses", diff: "Easy", pattern: "Bracket Matching Stack", hint: "Push opening brackets; on closing bracket check if top of stack matches." },
+          { id: 69, title: "Implement Queue using Stacks", slug: "implement-queue-using-stacks", diff: "Easy", pattern: "Amortized 2-Stack Queue", hint: "Use input stack for push and output stack for peek/pop, transferring only when output is empty." },
+          { id: 70, title: "Implement Stack using Queues", slug: "implement-stack-using-queues", diff: "Easy", pattern: "1-Queue Rotation", hint: "Push element to queue and rotate previous size-1 elements to the back." },
+          { id: 71, title: "Next Greater Element I", slug: "next-greater-element-i", diff: "Easy", pattern: "Monotonic Decreasing Stack", hint: "Pop smaller elements from stack when current element is larger and record mapping." },
+          { id: 72, title: "Min Stack", slug: "min-stack", diff: "Medium", pattern: "Pair Stack / Min Tracking", hint: "Store (val, currentMin) on each stack push for O(1) getMin()." },
+          { id: 73, title: "Evaluate Reverse Polish Notation", slug: "evaluate-reverse-polish-notation", diff: "Medium", pattern: "Postfix Operand Stack", hint: "Push numbers to stack; on operator pop top two operands, apply op, and push result." },
+          { id: 74, title: "Daily Temperatures", slug: "daily-temperatures", diff: "Medium", pattern: "Monotonic Stack of Indices", hint: "Maintain stack of indices with decreasing temperatures; pop when warmer day is found." },
+          { id: 75, title: "Next Greater Element II (Circular Array)", slug: "next-greater-element-ii", diff: "Medium", pattern: "Circular Monotonic Stack", hint: "Iterate 2*n - 1 times using index i % n with a monotonic decreasing stack." },
+          { id: 76, title: "Asteroid Collision", slug: "asteroid-collision", diff: "Medium", pattern: "Simulation Stack", hint: "Collisions only happen when stack top is moving right (+) and current asteroid moves left (-)." },
+          { id: 77, title: "Sum of Subarray Minimums", slug: "sum-of-subarray-minimums", diff: "Medium", pattern: "Prev/Next Smaller Element", hint: "For each element, count how many subarrays have it as minimum using PLE and NLE." },
+          { id: 78, title: "Online Stock Span", slug: "online-stock-span", diff: "Medium", pattern: "Monotonic Stack (Price, Span)", hint: "Pop and accumulate spans of all previous prices <= current price." },
+          { id: 79, title: "LRU Cache", slug: "lru-cache", diff: "Medium", pattern: "HashMap + Doubly Linked List", hint: "Combine HashMap with a Doubly Linked List to move accessed nodes to head in O(1)." },
+          { id: 80, title: "Largest Rectangle in Histogram", slug: "largest-rectangle-in-histogram", diff: "Hard", pattern: "Monotonic Increasing Stack", hint: "When bar height drops, pop taller bars and compute area using current index as right boundary." },
+          { id: 81, title: "Sliding Window Maximum", slug: "sliding-window-maximum", diff: "Hard", pattern: "Monotonic Decreasing Deque", hint: "Store indices in a deque in decreasing order of values; front always holds current window max." }
+        ]
+      },
+      {
+        id: "recursion-backtracking",
+        title: "Recursion & Backtracking",
+        questions: [
+          { id: 82, title: "Pow(x, n) (Fast Exponentiation)", slug: "powx-n", diff: "Medium", pattern: "Binary Exponentiation", hint: "Square base x and halve exponent n each step for O(log N) time." },
+          { id: 83, title: "Subsets (Power Set)", slug: "subsets", diff: "Medium", pattern: "Pick / Not-Pick Backtracking", hint: "At each index, branch into including nums[i] or excluding nums[i]." },
+          { id: 84, title: "Subsets II (With Duplicates)", slug: "subsets-ii", diff: "Medium", pattern: "Sort + Skip Duplicate Branches", hint: "Sort array first and skip i > start when nums[i] == nums[i-1]." },
+          { id: 85, title: "Combination Sum", slug: "combination-sum", diff: "Medium", pattern: "Unbounded Pick Backtracking", hint: "Stay on index i when picking element since unlimited reuse is allowed." },
+          { id: 86, title: "Combination Sum II", slug: "combination-sum-ii", diff: "Medium", pattern: "Sort + Prune Duplicates", hint: "Sort candidates, move to i + 1 after picking, and skip duplicate siblings." },
+          { id: 87, title: "Permutations", slug: "permutations", diff: "Medium", pattern: "Swap / Visited Backtracking", hint: "Swap current index with every index from i to n-1 and backtrack." },
+          { id: 88, title: "Letter Combinations of a Phone Number", slug: "letter-combinations-of-a-phone-number", diff: "Medium", pattern: "Digit-to-Letters DFS", hint: "Explore all mapped letters for digits[idx] recursively." },
+          { id: 89, title: "Palindrome Partitioning", slug: "palindrome-partitioning", diff: "Medium", pattern: "Prefix Palindrome Cut DFS", hint: "Partition at every index end where s[start..end] is a palindrome." },
+          { id: 90, title: "Word Search", slug: "word-search", diff: "Medium", pattern: "2D Grid DFS Backtracking", hint: "Run 4-directional DFS marking visited cells temporarily as '#' and restoring on backtrack." },
+          { id: 91, title: "N-Queens", slug: "n-queens", diff: "Hard", pattern: "Column & Diagonal Hashing", hint: "Place queens row by row while tracking occupied columns, (r+c) diagonals, and (r-c) anti-diagonals." },
+          { id: 92, title: "Sudoku Solver", slug: "sudoku-solver", diff: "Hard", pattern: "Constraint Backtracking", hint: "Try digits 1-9 in empty cells checking row, column, and 3x3 box validity." }
+        ]
+      },
+      {
+        id: "bit-manipulation",
+        title: "Bit Manipulation",
+        questions: [
+          { id: 93, title: "Single Number", slug: "single-number", diff: "Easy", pattern: "XOR Cancellation", hint: "XOR all numbers; since x ^ x = 0 and x ^ 0 = x, the unique number remains." },
+          { id: 94, title: "Number of 1 Bits (Hamming Weight)", slug: "number-of-1-bits", diff: "Easy", pattern: "Brian Kernighan's Trick", hint: "Repeatedly do n = n & (n - 1) to clear the lowest set bit in O(set bits) steps." },
+          { id: 95, title: "Power of Two", slug: "power-of-two", diff: "Easy", pattern: "Single Set Bit Check", hint: "A positive number n is a power of two iff (n & (n - 1)) == 0." },
+          { id: 96, title: "Counting Bits", slug: "counting-bits", diff: "Easy", pattern: "Bit DP: dp[i] = dp[i >> 1] + (i & 1)", hint: "Number of set bits in i is bits in (i / 2) plus the least significant bit." },
+          { id: 97, title: "Minimum Bit Flips to Convert Number", slug: "minimum-bit-flips-to-convert-number", diff: "Easy", pattern: "XOR + Popcount", hint: "Count set bits in (start ^ goal)." },
+          { id: 98, title: "Single Number II", slug: "single-number-ii", diff: "Medium", pattern: "Bitwise Modulo-3 State Machine", hint: "Count set bits at each of the 32 positions modulo 3, or use ones/twos bitmasks." },
+          { id: 99, title: "Single Number III", slug: "single-number-iii", diff: "Medium", pattern: "Rightmost Set Bit Partition", hint: "XOR all to get a^b; isolate lowest set bit diff = xor & (-xor) to split into two groups." },
+          { id: 100, title: "Divide Two Integers", slug: "divide-two-integers", diff: "Medium", pattern: "Bit Shift Subtraction", hint: "Subtract largest shifted multiples (divisor << k) from dividend." }
+        ]
+      },
+      {
+        id: "heap",
+        title: "Heap & Priority Queue",
+        questions: [
+          { id: 101, title: "Kth Largest Element in a Stream", slug: "kth-largest-element-in-a-stream", diff: "Easy", pattern: "Min-Heap of Size K", hint: "Maintain a Min-Heap of size k; top element is always the Kth largest." },
+          { id: 102, title: "Last Stone Weight", slug: "last-stone-weight", diff: "Easy", pattern: "Max-Heap Simulation", hint: "Pop two heaviest stones from Max-Heap and push their difference if non-zero." },
+          { id: 103, title: "Kth Largest Element in an Array", slug: "kth-largest-element-in-an-array", diff: "Medium", pattern: "Min-Heap Size K / QuickSelect", hint: "Keep a Min-Heap of k elements or use QuickSelect partitioning for O(N) average time." },
+          { id: 104, title: "Top K Frequent Elements", slug: "top-k-frequent-elements", diff: "Medium", pattern: "Bucket Sort / Min-Heap", hint: "Count frequencies in a map, then use frequency buckets or a size-k Min-Heap." },
+          { id: 105, title: "Task Scheduler", slug: "task-scheduler", diff: "Medium", pattern: "Max-Heap + Cooldown Queue", hint: "Use Max-Heap for most frequent tasks or formula max(len, (maxFreq - 1)*(n + 1) + countMax)." },
+          { id: 106, title: "K Closest Points to Origin", slug: "k-closest-points-to-origin", diff: "Medium", pattern: "Max-Heap of Size K", hint: "Maintain a Max-Heap of size k ordered by squared Euclidean distance x^2 + y^2." },
+          { id: 107, title: "Find Median from Data Stream", slug: "find-median-from-data-stream", diff: "Hard", pattern: "Two Heaps (Max-Heap + Min-Heap)", hint: "Balance lower half in a Max-Heap and upper half in a Min-Heap." },
+          { id: 108, title: "Merge k Sorted Lists", slug: "merge-k-sorted-lists", diff: "Hard", pattern: "Min-Heap of K Heads", hint: "Push head of each non-empty list into a Min-Heap and repeatedly extract minimum." }
+        ]
+      },
+      {
+        id: "greedy",
+        title: "Greedy Algorithms & Intervals",
+        questions: [
+          { id: 109, title: "Assign Cookies", slug: "assign-cookies", diff: "Easy", pattern: "Sort + Two Pointers", hint: "Sort both greed factors and cookie sizes; satisfy smallest greed with smallest valid cookie." },
+          { id: 110, title: "Lemonade Change", slug: "lemonade-change", diff: "Easy", pattern: "Greedy Bill Prioritization", hint: "For a $20 bill, greedily give $10 + $5 change before giving three $5 bills." },
+          { id: 111, title: "Jump Game", slug: "jump-game", diff: "Medium", pattern: "Max Reachable Index", hint: "Track maxReach = max(maxReach, i + nums[i]); if i > maxReach return false." },
+          { id: 112, title: "Jump Game II", slug: "jump-game-ii", diff: "Medium", pattern: "Greedy BFS Range Jumps", hint: "Track currentJumpEnd and farthest; increment jumps whenever i reaches currentJumpEnd." },
+          { id: 113, title: "Gas Station", slug: "gas-station", diff: "Medium", pattern: "Tank Deficit Reset", hint: "If totalGas < totalCost return -1; reset start = i + 1 whenever running tank drops below 0." },
+          { id: 114, title: "Hand of Straights", slug: "hand-of-straights", diff: "Medium", pattern: "TreeMap / Sorted Frequency", hint: "Always start forming a group from the smallest available card." },
+          { id: 115, title: "Non-overlapping Intervals", slug: "non-overlapping-intervals", diff: "Medium", pattern: "Sort by End Time", hint: "Sort intervals by end time and greedily keep intervals that finish earliest." },
+          { id: 116, title: "Insert Interval", slug: "insert-interval", diff: "Medium", pattern: "3-Phase Interval Scan", hint: "Add intervals before newInterval, merge all overlapping ones, then add remaining." },
+          { id: 117, title: "Valid Parenthesis String", slug: "valid-parenthesis-string", diff: "Medium", pattern: "Min/Max Open Count Range", hint: "Maintain [minOpen, maxOpen] range of possible unmatched '(' counts." },
+          { id: 118, title: "Candy", slug: "candy", diff: "Hard", pattern: "Two-Pass Greedy (Left & Right)", hint: "Pass left-to-right satisfying left neighbor, then right-to-left taking max with right neighbor." }
+        ]
+      },
+      {
+        id: "binary-trees",
+        title: "Binary Trees (Traversals & Views)",
+        questions: [
+          { id: 119, title: "Binary Tree Inorder Traversal", slug: "binary-tree-inorder-traversal", diff: "Easy", pattern: "DFS / Morris Traversal", hint: "Visit Left -> Root -> Right recursively or using an explicit stack." },
+          { id: 120, title: "Maximum Depth of Binary Tree", slug: "maximum-depth-of-binary-tree", diff: "Easy", pattern: "Height DFS: 1 + max(L, R)", hint: "Return 1 + max(maxDepth(root.left), maxDepth(root.right))." },
+          { id: 121, title: "Balanced Binary Tree", slug: "balanced-binary-tree", diff: "Easy", pattern: "Bottom-Up Height Check (-1)", hint: "Return -1 immediately if |leftHeight - rightHeight| > 1 to achieve O(N) time." },
+          { id: 122, title: "Diameter of Binary Tree", slug: "diameter-of-binary-tree", diff: "Easy", pattern: "Max (leftHeight + rightHeight)", hint: "At every node, update global maxDiameter = max(maxDiameter, leftHeight + rightHeight)." },
+          { id: 123, title: "Same Tree", slug: "same-tree", diff: "Easy", pattern: "Simultaneous Tree DFS", hint: "Check p.val == q.val and recursively verify left and right subtrees." },
+          { id: 124, title: "Symmetric Tree", slug: "symmetric-tree", diff: "Easy", pattern: "Mirror DFS (L.left vs R.right)", hint: "Compare left.left with right.right and left.right with right.left." },
+          { id: 125, title: "Invert Binary Tree", slug: "invert-binary-tree", diff: "Easy", pattern: "Swap Left & Right Children", hint: "Swap root.left and root.right and recurse on both subtrees." },
+          { id: 126, title: "Binary Tree Level Order Traversal", slug: "binary-tree-level-order-traversal", diff: "Medium", pattern: "Queue BFS Level by Level", hint: "Process q.size() nodes per iteration to group nodes by level." },
+          { id: 127, title: "Binary Tree Zigzag Level Order Traversal", slug: "binary-tree-zigzag-level-order-traversal", diff: "Medium", pattern: "BFS + Alternate Direction", hint: "Use BFS and fill level array from left-to-right or right-to-left based on level parity." },
+          { id: 128, title: "Binary Tree Right Side View", slug: "binary-tree-right-side-view", diff: "Medium", pattern: "Reverse Preorder (Root-Right-Left)", hint: "Visit Root -> Right -> Left and pick the first node visited at each depth." },
+          { id: 129, title: "Lowest Common Ancestor of a Binary Tree", slug: "lowest-common-ancestor-of-a-binary-tree", diff: "Medium", pattern: "LCA Postorder Propagation", hint: "If both left and right recursive calls return non-null, current root is the LCA." },
+          { id: 130, title: "Construct Binary Tree from Preorder and Inorder Traversal", slug: "construct-binary-tree-from-preorder-and-inorder-traversal", diff: "Medium", pattern: "Inorder Index HashMap + Divide", hint: "First element in preorder is root; use HashMap to split inorder into left and right subtrees." },
+          { id: 131, title: "Binary Tree Maximum Path Sum", slug: "binary-tree-maximum-path-sum", diff: "Hard", pattern: "Postorder Max Gain Clamping", hint: "Clamping negative branch gains to 0: maxGain = node.val + max(0, left) + max(0, right)." },
+          { id: 132, title: "Serialize and Deserialize Binary Tree", slug: "serialize-and-deserialize-binary-tree", diff: "Hard", pattern: "Preorder with Null Markers", hint: "Serialize using preorder traversal with '#' for null nodes and reconstruct via queue." }
+        ]
+      },
+      {
+        id: "bst",
+        title: "Binary Search Trees (BST)",
+        questions: [
+          { id: 133, title: "Search in a Binary Search Tree", slug: "search-in-a-binary-search-tree", diff: "Easy", pattern: "BST Property Navigation", hint: "Go left if val < root.val, go right if val > root.val." },
+          { id: 134, title: "Validate Binary Search Tree", slug: "validate-binary-search-tree", diff: "Medium", pattern: "(minVal, maxVal) Range DFS", hint: "Pass strict valid range (minVal, maxVal) down recursive calls." },
+          { id: 135, title: "Kth Smallest Element in a BST", slug: "kth-smallest-element-in-a-bst", diff: "Medium", pattern: "Inorder Traversal Counter", hint: "Inorder traversal of a BST visits nodes in sorted ascending order." },
+          { id: 136, title: "Lowest Common Ancestor of a Binary Search Tree", slug: "lowest-common-ancestor-of-a-binary-search-tree", diff: "Medium", pattern: "BST Split Point", hint: "First node where p and q don't lie on the same side is the LCA." },
+          { id: 137, title: "Insert into a Binary Search Tree", slug: "insert-into-a-binary-search-tree", diff: "Medium", pattern: "BST Leaf Insertion", hint: "Traverse left or right until hitting null and attach the new node." },
+          { id: 138, title: "Delete Node in a BST", slug: "delete-node-in-a-bst", diff: "Medium", pattern: "Inorder Successor Replacement", hint: "If node has two children, replace value with smallest node in right subtree and delete it." },
+          { id: 139, title: "Construct Binary Search Tree from Preorder Traversal", slug: "construct-binary-search-tree-from-preorder-traversal", diff: "Medium", pattern: "Upper Bound Recursion", hint: "Build BST in O(N) by passing an upper bound limit down the recursion." },
+          { id: 140, title: "Recover Binary Search Tree", slug: "recover-binary-search-tree", diff: "Medium", pattern: "Inorder Inversion Detection", hint: "Track prev node during inorder traversal to spot the two swapped nodes." }
+        ]
+      },
+      {
+        id: "graphs",
+        title: "Graphs (BFS, DFS, Topo Sort & Shortest Path)",
+        questions: [
+          { id: 141, title: "Number of Islands", slug: "number-of-islands", diff: "Medium", pattern: "Grid Connected Components DFS/BFS", hint: "Whenever '1' is found, increment count and sink the entire island via DFS/BFS." },
+          { id: 142, title: "Flood Fill", slug: "flood-fill", diff: "Easy", pattern: "4-Directional Grid DFS", hint: "Change starting pixel color and spread recursively to matching neighbors." },
+          { id: 143, title: "Rotting Oranges", slug: "rotting-oranges", diff: "Medium", pattern: "Multi-Source BFS", hint: "Push all initially rotten oranges into the queue at t=0 and expand level by level." },
+          { id: 144, title: "01 Matrix (Distance of Nearest Cell)", slug: "01-matrix", diff: "Medium", pattern: "Multi-Source BFS from 0s", hint: "Enqueue all 0-cells initially and relax distances to unvisited 1-cells." },
+          { id: 145, title: "Surrounded Regions", slug: "surrounded-regions", diff: "Medium", pattern: "Boundary DFS", hint: "Run DFS from all 'O's on the border and mark them safe; flip remaining interior 'O's to 'X'." },
+          { id: 146, title: "Number of Provinces", slug: "number-of-provinces", diff: "Medium", pattern: "Connected Components / Union-Find", hint: "Count connected components using DFS or Disjoint Set Union (DSU)." },
+          { id: 147, title: "Is Graph Bipartite?", slug: "is-graph-bipartite", diff: "Medium", pattern: "2-Coloring BFS/DFS", hint: "Color adjacent nodes with alternating colors (0 and 1); if neighbor has same color, return false." },
+          { id: 148, title: "Course Schedule (Cycle Detection)", slug: "course-schedule", diff: "Medium", pattern: "Kahn's Topological Sort / 3-Color DFS", hint: "Compute indegrees and push 0-indegree nodes to queue; if visited == numCourses, no cycle." },
+          { id: 149, title: "Course Schedule II (Topological Order)", slug: "course-schedule-ii", diff: "Medium", pattern: "Kahn's BFS Topological Sort", hint: "Record order as nodes are popped from the 0-indegree queue." },
+          { id: 150, title: "Clone Graph", slug: "clone-graph", diff: "Medium", pattern: "Old-to-New HashMap DFS/BFS", hint: "Store cloned nodes in a Map<Node, Node> to handle cycles while traversing." },
+          { id: 151, title: "Network Delay Time (Dijkstra's Algorithm)", slug: "network-delay-time", diff: "Medium", pattern: "Dijkstra Priority Queue", hint: "Use a Min-Heap (dist, node) to greedily relax shortest paths from source k." },
+          { id: 152, title: "Cheapest Flights Within K Stops", slug: "cheapest-flights-within-k-stops", diff: "Medium", pattern: "Bellman-Ford / Level BFS", hint: "Run BFS bounded by stops <= k, relaxing lowest cost to each city." },
+          { id: 153, title: "Word Ladder", slug: "word-ladder", diff: "Hard", pattern: "Shortest Path Bidirectional BFS", hint: "Try all 26 character replacements at each position using a HashSet of words." }
+        ]
+      },
+      {
+        id: "dp",
+        title: "Dynamic Programming (1D, Grids, Subsequences & Strings)",
+        questions: [
+          { id: 154, title: "Climbing Stairs", slug: "climbing-stairs", diff: "Easy", pattern: "1D Fibonacci DP", hint: "dp[i] = dp[i-1] + dp[i-2]; optimize to two variables prev1 and prev2." },
+          { id: 155, title: "House Robber", slug: "house-robber", diff: "Medium", pattern: "Pick / Non-Adjacent 1D DP", hint: "dp[i] = max(dp[i-1], nums[i] + dp[i-2])." },
+          { id: 156, title: "House Robber II (Circular)", slug: "house-robber-ii", diff: "Medium", pattern: "Circular Split DP", hint: "Take max of House Robber on nums[0..n-2] and nums[1..n-1]." },
+          { id: 157, title: "Coin Change", slug: "coin-change", diff: "Medium", pattern: "Unbounded Knapsack DP", hint: "dp[amt] = min(dp[amt], 1 + dp[amt - coin]) for all coins." },
+          { id: 158, title: "Partition Equal Subset Sum", slug: "partition-equal-subset-sum", diff: "Medium", pattern: "0/1 Knapsack Subset Sum", hint: "Check if a subset sums to totalSum / 2 using a boolean 1D DP array." },
+          { id: 159, title: "Target Sum", slug: "target-sum", diff: "Medium", pattern: "Subset Sum Count (P - N = target)", hint: "Reduce to counting subsets with sum = (totalSum + target) / 2." },
+          { id: 160, title: "Unique Paths", slug: "unique-paths", diff: "Medium", pattern: "2D Grid DP", hint: "dp[r][c] = dp[r-1][c] + dp[r][c-1]." },
+          { id: 161, title: "Minimum Path Sum", slug: "minimum-path-sum", diff: "Medium", pattern: "Grid Min Cost DP", hint: "dp[r][c] = grid[r][c] + min(dp[r-1][c], dp[r][c-1])." },
+          { id: 162, title: "Longest Common Subsequence (LCS)", slug: "longest-common-subsequence", diff: "Medium", pattern: "2-String DP Table", hint: "If s1[i]==s2[j], 1 + dp[i-1][j-1]; else max(dp[i-1][j], dp[i][j-1])." },
+          { id: 163, title: "Longest Increasing Subsequence (LIS)", slug: "longest-increasing-subsequence", diff: "Medium", pattern: "Patience Sorting + Binary Search", hint: "Maintain a sorted tails array using binary search (lower_bound) for O(N log N) time." },
+          { id: 164, title: "Word Break", slug: "word-break", diff: "Medium", pattern: "Prefix Segmentation DP", hint: "dp[i] is true if there is j < i such that dp[j] is true and s[j..i] is in wordDict." },
+          { id: 165, title: "Maximum Product Subarray", slug: "maximum-product-subarray", diff: "Medium", pattern: "Min & Max Running Product", hint: "Track both maxProd and minProd because a negative number flips min to max." },
+          { id: 166, title: "Best Time to Buy and Sell Stock with Cooldown", slug: "best-time-to-buy-and-sell-stock-with-cooldown", diff: "Medium", pattern: "3-State Machine Stock DP", hint: "Transition between Hold, Sold, and Rest states at each day." },
+          { id: 167, title: "Edit Distance", slug: "edit-distance", diff: "Medium", pattern: "Insert / Delete / Replace 2D DP", hint: "If chars match dp[i-1][j-1]; else 1 + min(insert, delete, replace)." },
+          { id: 168, title: "Burst Balloons (Partition DP)", slug: "burst-balloons", diff: "Hard", pattern: "Matrix Chain / Interval DP", hint: "Think of k as the LAST balloon burst in range [left, right]." }
+        ]
+      }
+    ];
+
+    // Persistent State Keys
+    const STORAGE_KEY_SOLVED = "cwa_dsa_168_solved";
+    const STORAGE_KEY_STARRED = "cwa_dsa_168_starred";
+    const STORAGE_KEY_NOTES = "cwa_dsa_168_notes";
+    const STORAGE_KEY_THEME = "cwa_dsa_168_theme";
+
+    let solvedSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_SOLVED) || "[]"));
+    let starredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY_STARRED) || "[]"));
+    let notesMap = JSON.parse(localStorage.getItem(STORAGE_KEY_NOTES) || "{}");
+    let activeTopicFilter = "ALL";
+    let collapsedTopics = new Set();
+    let activeModalQuestionId = null;
+
+    // Flatten questions for quick lookup
+    const ALL_QUESTIONS = [];
+    DSA_TOPICS.forEach(t => {
+      t.questions.forEach(q => {
+        ALL_QUESTIONS.push({ ...q, topicId: t.id, topicTitle: t.title });
+      });
+    });
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY_SOLVED, JSON.stringify([...solvedSet]));
+      localStorage.setItem(STORAGE_KEY_STARRED, JSON.stringify([...starredSet]));
+      localStorage.setItem(STORAGE_KEY_NOTES, JSON.stringify(notesMap));
+    }
+
+    function updateProgressDashboard() {
+      const total = ALL_QUESTIONS.length;
+      const solvedCount = solvedSet.size;
+      const pct = total > 0 ? Math.round((solvedCount / total) * 100) : 0;
+
+      // Update Circular Ring
+      const circumference = 276.46;
+      const offset = circumference - (pct / 100) * circumference;
+      document.getElementById("overallRing").style.strokeDashoffset = offset;
+      document.getElementById("overallPct").textContent = `${pct}%`;
+      document.getElementById("overallCountText").textContent = `${solvedCount} / ${total}`;
+
+      const readinessEl = document.getElementById("readinessText");
+      if (pct >= 90) {
+        readinessEl.innerHTML = `<strong style="color: var(--easy-text);">🏆 90%+ Pattern Mastery Unlocked! You are Interview Ready!</strong>`;
+      } else {
+        const needed = Math.max(0, Math.ceil(total * 0.9) - solvedCount);
+        readinessEl.textContent = `${needed} more questions to hit the 90% Interview Readiness milestone!`;
+      }
+
+      // Difficulty Breakdown
+      const counts = {
+        Easy: { total: 0, solved: 0 },
+        Medium: { total: 0, solved: 0 },
+        Hard: { total: 0, solved: 0 }
+      };
+
+      ALL_QUESTIONS.forEach(q => {
+        counts[q.diff].total++;
+        if (solvedSet.has(q.id)) counts[q.diff].solved++;
+      });
+
+      document.getElementById("easyCountText").textContent = `${counts.Easy.solved} / ${counts.Easy.total}`;
+      document.getElementById("easyBar").style.width = `${(counts.Easy.solved / counts.Easy.total) * 100}%`;
+
+      document.getElementById("mediumCountText").textContent = `${counts.Medium.solved} / ${counts.Medium.total}`;
+      document.getElementById("mediumBar").style.width = `${(counts.Medium.solved / counts.Medium.total) * 100}%`;
+
+      document.getElementById("hardCountText").textContent = `${counts.Hard.solved} / ${counts.Hard.total}`;
+      document.getElementById("hardBar").style.width = `${(counts.Hard.solved / counts.Hard.total) * 100}%`;
+    }
+
+    function renderTopicPills() {
+      const container = document.getElementById("topicPillsContainer");
+      let html = `<button class="topic-pill ${activeTopicFilter === 'ALL' ? 'active' : ''}" data-topic="ALL">All 15 Topics (${ALL_QUESTIONS.length})</button>`;
+      DSA_TOPICS.forEach((t, idx) => {
+        const isActive = activeTopicFilter === t.id ? "active" : "";
+        html += `<button class="topic-pill ${isActive}" data-topic="${t.id}">${idx + 1}. ${t.title} (${t.questions.length})</button>`;
+      });
+      container.innerHTML = html;
+
+      container.querySelectorAll(".topic-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeTopicFilter = btn.getAttribute("data-topic");
+          renderTopicPills();
+          renderSheet();
+        });
+      });
+    }
+
+    function renderSheet() {
+      const searchVal = document.getElementById("searchInput").value.trim().toLowerCase();
+      const diffVal = document.getElementById("diffFilter").value;
+      const statusVal = document.getElementById("statusFilter").value;
+      const sheetContainer = document.getElementById("sheetContainer");
+
+      let html = "";
+
+      DSA_TOPICS.forEach((topic, tIdx) => {
+        if (activeTopicFilter !== "ALL" && activeTopicFilter !== topic.id) return;
+
+        const filteredQuestions = topic.questions.filter(q => {
+          if (diffVal !== "ALL" && q.diff !== diffVal) return false;
+          if (statusVal === "SOLVED" && !solvedSet.has(q.id)) return false;
+          if (statusVal === "UNSOLVED" && solvedSet.has(q.id)) return false;
+          if (statusVal === "STARRED" && !starredSet.has(q.id)) return false;
+          if (searchVal) {
+            const matchTitle = q.title.toLowerCase().includes(searchVal);
+            const matchPattern = q.pattern.toLowerCase().includes(searchVal);
+            const matchId = String(q.id) === searchVal;
+            if (!matchTitle && !matchPattern && !matchId) return false;
+          }
+          return true;
+        });
+
+        if (filteredQuestions.length === 0) return;
+
+        const topicTotal = topic.questions.length;
+        const topicSolved = topic.questions.filter(q => solvedSet.has(q.id)).length;
+        const topicPct = Math.round((topicSolved / topicTotal) * 100);
+        const isCollapsed = collapsedTopics.has(topic.id) ? "collapsed" : "";
+
+        html += `
+          <div class="topic-section ${isCollapsed}" data-topic-sec="${topic.id}">
+            <div class="topic-header" onclick="toggleTopicSection('${topic.id}')">
+              <div class="topic-title-wrap">
+                <span class="topic-step-num">STEP ${String(tIdx + 1).padStart(2, "0")}</span>
+                <span class="topic-name">${topic.title}</span>
+              </div>
+              <div class="topic-right">
+                <div class="topic-prog-wrap">
+                  <div class="topic-prog-bar">
+                    <div class="topic-prog-fill" style="width: ${topicPct}%"></div>
+                  </div>
+                  <span class="topic-count-badge">${topicSolved} / ${topicTotal}</span>
+                </div>
+                <span class="chevron">▼</span>
+              </div>
+            </div>
+            <div class="topic-body">
+              <div class="table-responsive">
+                <table class="problem-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 60px; text-align:center;">Done</th>
+                      <th style="width: 55px;">#</th>
+                      <th>Problem Name (Click to Open LeetCode)</th>
+                      <th>Core Pattern</th>
+                      <th style="width: 110px;">Difficulty</th>
+                      <th style="width: 135px;">LeetCode Link</th>
+                      <th style="width: 110px; text-align:center;">Rev / Hint</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+        `;
+
+        filteredQuestions.forEach(q => {
+          const isSolved = solvedSet.has(q.id);
+          const isStarred = starredSet.has(q.id);
+          const hasNote = Boolean(notesMap[q.id] && notesMap[q.id].trim());
+          const lcUrl = `https://leetcode.com/problems/${q.slug}/`;
+
+          html += `
+            <tr class="problem-row ${isSolved ? 'solved' : ''}" id="row-${q.id}">
+              <td style="text-align:center;">
+                <button
+                  class="status-check ${isSolved ? 'checked' : ''}"
+                  onclick="toggleSolved(${q.id})"
+                  title="Mark as Solved"
+                >✓</button>
+              </td>
+              <td class="prob-num">${q.id}</td>
+              <td>
+                <a href="${lcUrl}" target="_blank" rel="noopener" class="prob-title-link">
+                  ${q.title}
+                </a>
+              </td>
+              <td><span class="pattern-badge">${q.pattern}</span></td>
+              <td><span class="diff-badge ${q.diff}">${q.diff}</span></td>
+              <td>
+                <a href="${lcUrl}" target="_blank" rel="noopener" class="lc-btn">
+                  ⚡ LeetCode ↗
+                </a>
+              </td>
+              <td style="text-align:center; white-space:nowrap;">
+                <button
+                  class="icon-btn ${isStarred ? 'starred' : ''}"
+                  onclick="toggleStar(${q.id})"
+                  title="Bookmark for Revision"
+                >★</button>
+                <button
+                  class="icon-btn ${hasNote ? 'has-note' : ''}"
+                  onclick="openInfoModal(${q.id})"
+                  title="View Optimal Approach & Add Notes"
+                >💡</button>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      if (!html) {
+        html = `
+          <div class="card" style="text-align:center; padding: 48px 20px;">
+            <h3 style="margin-bottom: 8px;">No matching questions found</h3>
+            <p style="color: var(--text-secondary); font-size: 14px;">Try clearing your search or switching difficulty/status filters.</p>
+          </div>
+        `;
+      }
+
+      sheetContainer.innerHTML = html;
+    }
+
+    window.toggleSolved = function(id) {
+      if (solvedSet.has(id)) {
+        solvedSet.delete(id);
+      } else {
+        solvedSet.add(id);
+      }
+      saveState();
+      updateProgressDashboard();
+      renderSheet();
+    };
+
+    window.toggleStar = function(id) {
+      if (starredSet.has(id)) {
+        starredSet.delete(id);
+      } else {
+        starredSet.add(id);
+      }
+      saveState();
+      renderSheet();
+    };
+
+    window.toggleTopicSection = function(topicId) {
+      if (collapsedTopics.has(topicId)) {
+        collapsedTopics.delete(topicId);
+      } else {
+        collapsedTopics.add(topicId);
+      }
+      const sec = document.querySelector(`[data-topic-sec="${topicId}"]`);
+      if (sec) sec.classList.toggle("collapsed");
+    };
+
+    window.openInfoModal = function(id) {
+      const q = ALL_QUESTIONS.find(item => item.id === id);
+      if (!q) return;
+      activeModalQuestionId = id;
+      document.getElementById("modalProblemTitle").textContent = `#${q.id}. ${q.title}`;
+      document.getElementById("modalProblemSub").textContent = `${q.topicTitle} • Pattern: ${q.pattern} • ${q.diff}`;
+      document.getElementById("modalApproachText").textContent = q.hint;
+      document.getElementById("modalNoteInput").value = notesMap[id] || "";
+      document.getElementById("modalLcLink").href = `https://leetcode.com/problems/${q.slug}/`;
+      document.getElementById("infoModal").classList.add("open");
+    };
+
+    document.getElementById("closeModalBtn").addEventListener("click", () => {
+      document.getElementById("infoModal").classList.remove("open");
+    });
+
+    document.getElementById("saveNoteBtn").addEventListener("click", () => {
+      if (activeModalQuestionId !== null) {
+        const val = document.getElementById("modalNoteInput").value;
+        if (val.trim()) {
+          notesMap[activeModalQuestionId] = val;
+        } else {
+          delete notesMap[activeModalQuestionId];
+        }
+        saveState();
+        renderSheet();
+        document.getElementById("infoModal").classList.remove("open");
+      }
+    });
+
+    // Search & Filters
+    document.getElementById("searchInput").addEventListener("input", renderSheet);
+    document.getElementById("diffFilter").addEventListener("change", renderSheet);
+    document.getElementById("statusFilter").addEventListener("change", renderSheet);
+
+    // Random Unsolved Question
+    document.getElementById("randomBtn").addEventListener("click", () => {
+      const unsolved = ALL_QUESTIONS.filter(q => !solvedSet.has(q.id));
+      const pool = unsolved.length > 0 ? unsolved : ALL_QUESTIONS;
+      const pick = pool[Math.floor(Math.random() * pool.length)];
+      openInfoModal(pick.id);
+    });
+
+    // Expand / Collapse All
+    let allCollapsed = false;
+    document.getElementById("expandAllBtn").addEventListener("click", (e) => {
+      allCollapsed = !allCollapsed;
+      if (allCollapsed) {
+        DSA_TOPICS.forEach(t => collapsedTopics.add(t.id));
+        e.target.textContent = "Expand All";
+      } else {
+        collapsedTopics.clear();
+        e.target.textContent = "Collapse All";
+      }
+      renderSheet();
+    });
+
+    // Export Backup JSON
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const data = {
+        sheet: "Code With Adarsh 168 DSA Sheet",
+        exportedAt: new Date().toISOString(),
+        solved: [...solvedSet],
+        starred: [...starredSet],
+        notes: notesMap
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "code-with-adarsh-dsa-progress.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Reset Progress
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (confirm("Are you sure you want to reset all your ticked questions and notes?")) {
+        solvedSet.clear();
+        starredSet.clear();
+        notesMap = {};
+        saveState();
+        updateProgressDashboard();
+        renderSheet();
+      }
+    });
+
+    // Theme Switcher
+    const themeBtn = document.getElementById("themeBtn");
+    function applyTheme(theme) {
+      if (theme === "light") {
+        document.documentElement.classList.add("light");
+        themeBtn.textContent = "🌙 Dark";
+      } else {
+        document.documentElement.classList.remove("light");
+        themeBtn.textContent = "☀️ Light";
+      }
+      localStorage.setItem(STORAGE_KEY_THEME, theme);
+    }
+    applyTheme(localStorage.getItem(STORAGE_KEY_THEME) || "dark");
+
+    themeBtn.addEventListener("click", () => {
+      const isLight = document.documentElement.classList.contains("light");
+      applyTheme(isLight ? "dark" : "light");
+    });
+
+    // Initialize
+    document.getElementById("expandAllBtn").textContent = "Collapse All";
+    updateProgressDashboard();
+    renderTopicPills();
+    renderSheet();
+  </script>
+</body>
+</html>
